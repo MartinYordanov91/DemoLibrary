@@ -23,7 +23,7 @@ jobs:
       run: npm ci
 
     - name: Run Frond End
-      run: npm start
+      run: npm start &
 
     - name: Run Back End
       run: npm run server
