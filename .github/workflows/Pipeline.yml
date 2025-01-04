@@ -26,7 +26,7 @@ jobs:
       run: npm start &
 
     - name: Run Back End
-      run: npm run server
+      run: npm run server &
 
     - name: Run Test 
       run: npm test
