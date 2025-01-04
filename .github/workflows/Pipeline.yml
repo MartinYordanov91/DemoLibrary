@@ -1,0 +1,32 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout DemoLibarary
+      uses: actions/checkout@v4
+      
+    - name: Use Node v22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+
+    - name: Install Dependency    
+      run: npm ci
+
+    - name: Run Frond End
+      run: npm start
+
+    - name: Run Back End
+      run: npm run server
+
+    - name: Run Test 
+      run: npm test
