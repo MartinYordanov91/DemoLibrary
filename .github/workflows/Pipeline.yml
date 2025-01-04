@@ -28,5 +28,11 @@ jobs:
     - name: Run Back End
       run: npm run server &
 
+    - name: Wait for Frond End
+      run: ./wait-for-it.sh localhost:3000 -t 30
+
+    - name: Wait for Back End
+      run: ./wait-for-it.sh localhost:3030 -t 30
+    
     - name: Run Test 
       run: npm test
