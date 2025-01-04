@@ -22,22 +22,14 @@ jobs:
     - name: Install Dependencies    
       run: npm ci
 
+    - name: Instal Playwright 
+      run: npx playwright install  
+ 
     - name: Run Front End
       run: npm start &
 
     - name: Run Back End
       run: npm run server &
-
-    - name: Download Wait-for-it
-      run: |
-        curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
-        chmod +x wait-for-it.sh
-
-    - name: Wait for Front End
-      run: ./wait-for-it.sh localhost:3000 -t 30
-
-    - name: Wait for Back End
-      run: ./wait-for-it.sh localhost:3030 -t 30
     
     - name: Run Tests 
       run: npm test
