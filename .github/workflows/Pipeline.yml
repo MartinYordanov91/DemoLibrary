@@ -1,0 +1,35 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout DemoLibrary
+      uses: actions/checkout@v4
+      
+    - name: Use Node v22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+
+    - name: Install Dependencies    
+      run: npm ci
+
+    - name: Instal Playwright 
+      run: npx playwright install  
+ 
+    - name: Run Front End
+      run: npm start &
+
+    - name: Run Back End
+      run: npm run server &
+    
+    - name: Run Tests 
+      run: npm test
